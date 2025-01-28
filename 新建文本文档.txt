@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh - CN">
+
+<head>
+    <meta charset="UTF - 8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年祝福</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        #newYearMessage {
+            font-size: 4em;
+            animation: fadeIn 3s ease - in - out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+       .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: transparent;
+            border-radius: 50%;
+            animation: explode 2s ease - out;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(10);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="newYearMessage">新年快乐，龙年大吉！</div>
+    <div id="fireworks"></div>
+    <script>
+        const fireworksContainer = document.getElementById('fireworks');
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = Math.random() * window.innerWidth + 'px';
+            firework.style.top = Math.random() * window.innerHeight + 'px';
+            const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            firework.style.backgroundColor = randomColor;
+            fireworksContainer.appendChild(firework);
+
+            setTimeout(() => {
+                fireworksContainer.removeChild(firework);
+            }, 2000);
+        }
+
+        setInterval(createFirework, 300);
+    </script>
+</body>
+
+</html>
